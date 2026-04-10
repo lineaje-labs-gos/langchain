@@ -1,18 +1,28 @@
 [project]
 authors = []
-license = { text = "MIT" }
 requires-python = ">=3.9.0,<4.0.0"
 dependencies = []
 name = "langchain-monorepo"
-version = "0.0.1"
+version = "0.3.81+lineaje.1"
 description = "LangChain mono-repo"
 readme = "README.md"
+maintainers = [
+    { name = "Lineaje DepFixer", email = "221268890+Lineaje-DepFixer@users.noreply.github.com" },
+]
+
+[project.license]
+text = "MIT"
 
 [project.urls]
 repository = "https://www.github.com/langchain-ai/langchain"
+Homepage = "https://github.com/lineaje-labs-gos/langchain"
+Repository = "https://github.com/lineaje-labs-gos/langchain"
+Tracker = "https://github.com/lineaje-labs-gos/langchain/issues"
 
 [dependency-groups]
-lint = ["ruff>=0.12.2,<0.13.0"]
+lint = [
+    "ruff>=0.12.2,<0.13.0",
+]
 dev = [
     "langchain-core",
     "langchain-text-splitters",
@@ -70,36 +80,72 @@ docs = [
     "types-docutils>=0.22.1.20250923",
 ]
 
-[tool.uv.sources]
-langchain-core = { path = "./libs/core", editable = true }
-langchain-text-splitters = { path = "./libs/text-splitters", editable = true }
-langchain-tests = { path = "./libs/standard-tests", editable = true }
-langchain = { path = "./libs/langchain", editable = true }
-langchain-openai = { path = "./libs/partners/openai", editable = true }
-langchain-anthropic = { path = "./libs/partners/anthropic", editable = true }
-langchain-chroma = { path = "./libs/partners/chroma", editable = true }
-langchain-fireworks = { path = "./libs/partners/fireworks", editable = true }
-langchain-groq = { path = "./libs/partners/groq", editable = true }
-langchain-mistralai = { path = "./libs/partners/mistralai", editable = true }
+[tool.uv.sources.langchain-core]
+path = "./libs/core"
+editable = true
 
-[build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+[tool.uv.sources.langchain-text-splitters]
+path = "./libs/text-splitters"
+editable = true
 
+[tool.uv.sources.langchain-tests]
+path = "./libs/standard-tests"
+editable = true
+
+[tool.uv.sources.langchain]
+path = "./libs/langchain"
+editable = true
+
+[tool.uv.sources.langchain-openai]
+path = "./libs/partners/openai"
+editable = true
+
+[tool.uv.sources.langchain-anthropic]
+path = "./libs/partners/anthropic"
+editable = true
+
+[tool.uv.sources.langchain-chroma]
+path = "./libs/partners/chroma"
+editable = true
+
+[tool.uv.sources.langchain-fireworks]
+path = "./libs/partners/fireworks"
+editable = true
+
+[tool.uv.sources.langchain-groq]
+path = "./libs/partners/groq"
+editable = true
+
+[tool.uv.sources.langchain-mistralai]
+path = "./libs/partners/mistralai"
+editable = true
 
 [tool.ruff]
-extend-include = ["*.ipynb"]
+extend-include = [
+    "*.ipynb",
+]
 
 [tool.ruff.lint]
-select = ["D"] # global select for pydocstyle
-pydocstyle = { convention = "google" }
+select = [
+    "D",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 "**/{cookbook,docs}/*" = [
-    "E402", # allow imports to appear anywhere in docs
-    "F401", # allow "imported but unused" example code
-    "F811", # allow re-importing the same module, so that cells can stay independent
-    "F841", # allow assignments to variables that are never read -- it's example code
-
+    "E402",
+    "F401",
+    "F811",
+    "F841",
 ]
-"!libs/langchain/langchain/model_laboratory.py" = ["D"]
+"!libs/langchain/langchain/model_laboratory.py" = [
+    "D",
+]
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
